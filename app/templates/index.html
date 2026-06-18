@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance Premium Predictor</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Insurance Premium Predictor</h1>
+
+        <form method="POST">
+
+            <input
+                type="number"
+                name="age"
+                placeholder="Age"
+                required
+            >
+
+            <input
+                type="number"
+                step="0.1"
+                name="bmi"
+                placeholder="BMI"
+                required
+            >
+
+            <input
+                type="number"
+                name="children"
+                placeholder="Number of Children"
+                required
+            >
+
+            <select name="discount" required>
+                <option value="" disabled selected>
+                    Discount Eligibility
+                </option>
+                <option value="1">Eligible</option>
+                <option value="0">Not Eligible</option>
+            </select>
+
+            <select name="gender" required>
+                <option value="" disabled selected>
+                    Gender
+                </option>
+                <option value="1">Male</option>
+                <option value="0">Female</option>
+            </select>
+
+            <select name="region" required>
+                <option value="" disabled selected>
+                    Region
+                </option>
+                <option value="0">Northeast</option>
+                <option value="1">Northwest</option>
+                <option value="2">Southeast</option>
+                <option value="3">Southwest</option>
+            </select>
+
+            <button type="submit">
+                Predict Premium
+            </button>
+
+        </form>
+
+        {% if prediction is not none %}
+        <div class="result">
+            Predicted Premium: ₹{{ prediction | round(2) }}
+        </div>
+        {% endif %}
+
+    </div>
+
+</body>
+</html>
